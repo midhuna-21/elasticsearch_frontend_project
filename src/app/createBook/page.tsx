@@ -15,14 +15,6 @@ const CreateBookForm = () => {
     const [image, setImage] = useState<File | null>(null);
     const router = useRouter();
     const [isChanged, setIsChanged] = useState(false);
-    const initialValues = {
-        title,
-        author,
-        publishedYear,
-        isbn,
-        description,
-        image,
-    };
 
     const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setTitle(e.target.value);

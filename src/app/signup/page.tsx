@@ -1,9 +1,8 @@
 "use client";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { axiosUser } from "../api/axios";
-import axios from "axios";
 import { toast } from "react-hot-toast";
 import { validate } from "@/utils/validations/signup";
 import { HiEye, HiEyeOff } from "react-icons/hi";
@@ -41,11 +40,7 @@ export default function SignupPage() {
             return;
         }
         try {
-            // const response = await axios.post("http://localhost:8000/api/user/signup", {
-            //     name,
-            //     email,
-            //     password,
-            // });
+         
             const response = await axiosUser.post("/signup", {
                 name,
                 email,

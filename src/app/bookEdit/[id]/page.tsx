@@ -1,8 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { axiosUser } from "../../api/axios";
 import toast from "react-hot-toast";
-import axios from "axios";
 import { useParams, useRouter } from "next/navigation";
 import { FaCamera, FaTimes } from "react-icons/fa";
 import { validateBook } from "@/utils/validations/book";

@@ -6,8 +6,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
 import { RootState } from "@/reduxStore/store";
 import { useEffect, useState } from "react";
-import Cookies from "js-cookie";
-import axios from "axios";
 import { userAxiosInstance } from "@/app/api/axiosInstance";
 
 const Header = () => {

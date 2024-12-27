@@ -2,7 +2,6 @@
 import Link from "next/link";
 import React, { useState, useEffect } from "react";
 import toast from "react-hot-toast";
-import { axiosUser } from "./api/axios";
 import { userAxiosInstance } from "./api/axiosInstance";
 
 interface AllBooks {

@@ -1,11 +1,9 @@
 "use client";
 import Link from "next/link";
-import Cookies from "js-cookie";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import { HiEye, HiEyeOff } from "react-icons/hi";
-import axios from "axios";
 import { useDispatch } from "react-redux";
 import { addUser } from "@/reduxStore/slice/userSlice";
 import { validateLogin } from "@/utils/validations/login";
@@ -32,12 +30,7 @@ export default function LoginPage() {
                 toast.error(validationResult);
                 return;
             }
-            // const response = await axios.post('http://localhost:8000/api/user/login',{email,password},{
-            //      withCredentials: true  ,
-            //      headers: {
-            //         "Content-Type": "application/json",
-            //     },
-            // })
+     
             const response = await axiosUser.post('/login',{email,password},{
                 withCredentials: true  ,
                 headers: {

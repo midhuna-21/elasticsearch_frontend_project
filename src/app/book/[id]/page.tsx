@@ -1,9 +1,8 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import axios from "axios";
 import { useParams, useRouter } from "next/navigation";
-import { FaEdit, FaBookReader, FaTrash } from "react-icons/fa";
+import { FaEdit, FaTrash } from "react-icons/fa";
 import Link from "next/link";
 import { userAxiosInstance } from "@/app/api/axiosInstance";
 

@@ -1,8 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import { axiosUser } from "../api/axios";
-import axios from "axios";
 import debounce from "lodash.debounce";
 import Link from "next/link";
 import { userAxiosInstance } from "../api/axiosInstance";
