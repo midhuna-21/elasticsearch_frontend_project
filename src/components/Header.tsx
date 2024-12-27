@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
 import { RootState } from "@/reduxStore/store";
 import { useEffect, useState } from "react";
+import { AxiosError } from 'axios';
 import { userAxiosInstance } from "@/app/api/axiosInstance";
 
 const Header = () => {
@@ -27,9 +28,16 @@ const Header = () => {
                    "Content-Type": "application/json",
                }})
             router.push("/login");
-        } catch (error: any) {
-            console.error("Error occurred while logout");
-            toast.error(error.message || "Logout failed");
+        } catch (error) {
+            if (error instanceof AxiosError) {
+                if (error.response && error.response.status === 400) {
+                    toast.error(error.response.data.message);
+                } else {
+                    toast.error("An error occurred. Try again later.");
+                }
+            } else {
+                toast.error("An unexpected error occurred.");
+            }
         }
     };
 

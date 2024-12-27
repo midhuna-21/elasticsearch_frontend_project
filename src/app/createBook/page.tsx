@@ -73,7 +73,7 @@ const CreateBookForm = () => {
                 formData.append("image", image);
             }
 
-            const response = await userAxiosInstanceWithFile.post("/create",
+            await userAxiosInstanceWithFile.post("/create",
                 formData,
                 {
                     withCredentials: true,

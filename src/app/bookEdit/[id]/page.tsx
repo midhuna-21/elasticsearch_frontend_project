@@ -10,16 +10,6 @@ import {
 } from "@/app/api/axiosInstance";
 import { AxiosError } from 'axios';
 
-interface Book {
-    _id: string;
-    title: string;
-    author: string;
-    description: string;
-    publishedYear: string;
-    isbn: string;
-    image: string;
-}
-
 const EditBook = () => {
     const { id } = useParams();
     const [title, setTitle] = useState("");
@@ -63,7 +53,7 @@ const EditBook = () => {
                 formData.append("image", image);
             }
 
-            const response = await userAxiosInstance.post(
+            await userAxiosInstance.post(
                 `/update/${id}`,
                 formData,
                 {

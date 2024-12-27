@@ -24,10 +24,10 @@ const BookDetails = () => {
     const [isExpanded, setIsExpanded] = useState(false);
     const [bookId, setBookId] = useState("");
     useEffect(() => {
-        if (id) fetchBook(id as string);
+        if (id) fetchBook();
     }, [id]);
 
-    const fetchBook = async (bookId: string) => {
+    const fetchBook = async () => {
         try {
             const response = await userAxiosInstance.get(`/book/${id}`
             );
@@ -50,7 +50,7 @@ const BookDetails = () => {
         setIsExpanded(!isExpanded);
     };
     const handleDelete = async () => {
-        const response = await userAxiosInstance.post(`/book/delete/${id}/${bookId}`
+         await userAxiosInstance.post(`/book/delete/${id}/${bookId}`
         );
         router.push("/books");
     };

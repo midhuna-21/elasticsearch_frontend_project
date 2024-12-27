@@ -39,10 +39,7 @@ const Books = () => {
         try {
             setLoading(true);
             const searchQuery = search.trim();
-            // const response = await axios.get(
-            //     `http://localhost:8000/api/user/books`,
-            //     { params: { page, search: searchQuery } }
-            // );
+           
             const response = await userAxiosInstance.get("/books", {
                 params: { page, search: searchQuery },
             });
