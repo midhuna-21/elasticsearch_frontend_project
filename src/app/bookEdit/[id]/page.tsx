@@ -8,7 +8,8 @@ import {
     userAxiosInstance,
     userAxiosInstanceWithFile,
 } from "@/app/api/axiosInstance";
-import { AxiosError } from 'axios';
+import { AxiosError } from "axios";
+import Image from "next/image";
 
 const EditBook = () => {
     const { id } = useParams();
@@ -53,16 +54,12 @@ const EditBook = () => {
                 formData.append("image", image);
             }
 
-            await userAxiosInstance.post(
-                `/update/${id}`,
-                formData,
-                {
-                    withCredentials: true,
-                    headers: {
-                        "Content-Type": "multipart/form-data",
-                    },
-                }
-            );
+            await userAxiosInstance.post(`/update/${id}`, formData, {
+                withCredentials: true,
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                },
+            });
 
             router.push("/books");
         } catch (error) {
@@ -152,7 +149,8 @@ const EditBook = () => {
             <div className="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-lg mt-20 flex flex-col md:flex-row items-center">
                 <div className="w-full  mb-6 md:mb-0">
                     <h2 className="text-3xl font-bold text-center mb-6 text-gray-500">
-                        Update Book <span className="text-gray-800">{title}</span>
+                        Update Book{" "}
+                        <span className="text-gray-800">{title}</span>
                     </h2>
 
                     <form>
@@ -209,52 +207,59 @@ const EditBook = () => {
                                     placeholder="Enter publication year"
                                 />
                             </div>
-
                         </div>
 
                         <div className="flex flex-row gap-10">
-                           <div className="flex flex-col">
-                           <div className="mb-4">
-                                <label
-                                    htmlFor="isbn"
-                                    className="block text-sm font-medium text-gray-700">
-                                    ISBN
-                                </label>
-                                <input
-                                    type="text"
-                                    onChange={(e) => handleIsbnChange(e)}
-                                    id="isbn"
-                                    name="isbn"
-                                    value={isbn}
-                                    className="w-full p-3 mt-2 border border-gray-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-700"
-                                    placeholder="Enter ISBN"
-                                />
+                            <div className="flex flex-col">
+                                <div className="mb-4">
+                                    <label
+                                        htmlFor="isbn"
+                                        className="block text-sm font-medium text-gray-700">
+                                        ISBN
+                                    </label>
+                                    <input
+                                        type="text"
+                                        onChange={(e) => handleIsbnChange(e)}
+                                        id="isbn"
+                                        name="isbn"
+                                        value={isbn}
+                                        className="w-full p-3 mt-2 border border-gray-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-700"
+                                        placeholder="Enter ISBN"
+                                    />
+                                </div>
+                                <div className="mb-4">
+                                    <label
+                                        htmlFor="description"
+                                        className="block text-sm font-medium text-gray-700">
+                                        Description
+                                    </label>
+                                    <textarea
+                                        style={{
+                                            width: "60vh",
+                                            height: "25vh",
+                                        }}
+                                        id="description"
+                                        onChange={(e) =>
+                                            handleDescriptionChange(e)
+                                        }
+                                        name="description"
+                                        value={description}
+                                        className="w-full p-3 mt-2 border border-gray-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-700"
+                                        placeholder="Write about this book..."
+                                        rows={4}
+                                    />
+                                </div>
                             </div>
-                            <div className="mb-4">
-                                <label
-                                    htmlFor="description"
-                                    className="block text-sm font-medium text-gray-700">
-                                    Description
-                                </label>
-                                <textarea
-                                    style={{ width: "60vh", height: "25vh" }}
-                                    id="description"
-                                    onChange={(e) => handleDescriptionChange(e)}
-                                    name="description"
-                                    value={description}
-                                    className="w-full p-3 mt-2 border border-gray-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-700"
-                                    placeholder="Write about this book..."
-                                    rows={4}
-                                />
-                            </div>
-                           </div>
 
                             <div className="mb-4">
                                 <div className="flex relative">
                                     {!image && !imageUrl && (
-                                        <label 
-                                        style={{height:"40vh",width:"30vh"}}
-                                        className="flex items-center justify-center w-full mt-7 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer">
+                                        <label
+                                            style={{
+                                                height: "40vh",
+                                                width: "30vh",
+                                            }}
+                                            className="flex items-center justify-center w-full mt-7 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer">
                                             <FaCamera className="text-gray-500 text-2xl" />
                                             <input
                                                 type="file"
@@ -273,8 +278,12 @@ const EditBook = () => {
                                                 className="absolute top-2 right-0 bg-red-500 text-white p-1 mt-4 rounded-full">
                                                 <FaTimes />
                                             </button>
-                                            <img
-                                            style={{height:"40vh",width:"30vh"}}
+
+                                            <Image
+                                                style={{
+                                                    height: "40vh",
+                                                    width: "30vh",
+                                                }}
                                                 src={
                                                     image
                                                         ? URL.createObjectURL(
@@ -282,10 +291,10 @@ const EditBook = () => {
                                                           )
                                                         : imageUrl
                                                         ? `/books/${imageUrl}`
-                                                        : undefined
+                                                        : ""
                                                 }
                                                 alt="book"
-                                                className=" mt-7 object-cover rounded-lg"
+                                                className="mt-7 object-cover rounded-lg"
                                             />
                                         </>
                                     )}
@@ -293,19 +302,19 @@ const EditBook = () => {
                             </div>
                         </div>
                         <div className="flex justify-end mt-4">
-        <button
-            style={{ width: "40vh" }}
-            onClick={handleSubmit}
-            type="submit"
-            disabled={!isChanged}
-            className={`w-full py-2 rounded-md transition ${
-                isChanged
-                    ? "bg-[#A8A8A8] hover:bg-[#787878]"
-                    : "bg-gray-300 cursor-not-allowed"
-            }`}>
-            Submit
-        </button>
-    </div>
+                            <button
+                                style={{ width: "40vh" }}
+                                onClick={handleSubmit}
+                                type="submit"
+                                disabled={!isChanged}
+                                className={`w-full py-2 rounded-md transition ${
+                                    isChanged
+                                        ? "bg-[#A8A8A8] hover:bg-[#787878]"
+                                        : "bg-gray-300 cursor-not-allowed"
+                                }`}>
+                                Submit
+                            </button>
+                        </div>
                     </form>
                 </div>
             </div>

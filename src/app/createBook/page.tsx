@@ -6,6 +6,7 @@ import { FaCamera } from "react-icons/fa";
 import { validateBook } from "@/utils/validations/book";
 import { userAxiosInstanceWithFile } from "../api/axiosInstance";
 import { AxiosError } from 'axios';
+import Image from "next/image";
 
 const CreateBookForm = () => {
     const [title, setTitle] = useState("");
@@ -208,7 +209,7 @@ const CreateBookForm = () => {
                         <div className="mb-4">
                             {image && (
                                 <div className="flex">
-                                    <img
+                                    <Image
                                         src={URL.createObjectURL(image)}
                                         alt="Book Preview"
                                         className="w-32 h-32 object-cover rounded-lg border"
@@ -233,7 +234,7 @@ const CreateBookForm = () => {
                 </div>
 
                 <div className="md:w-1/2 md:ml-8 hidden md:block">
-                    <img
+                    <Image
                         style={{ height: "100vh" }}
                         src="/books_images/createbook.jpg"
                         alt="Person reading a book"

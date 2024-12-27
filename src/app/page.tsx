@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import toast from "react-hot-toast";
 import { userAxiosInstance } from "./api/axiosInstance";
 import { AxiosError } from 'axios';
+import Image from "next/image";
 
 interface AllBooks {
     _id: string;
@@ -81,7 +82,7 @@ export default function Home() {
                                 <div
                                     key={index}
                                     className="bg-white rounded-lg shadow-lg overflow-hidden p-4 flex flex-col justify-between h-80 w-60">
-                                    <img
+                                    <Image
                                         src={`/books/${book._source.image}`}
                                         alt={book._source.title}
                                         className="object-cover w-full h-64 border-2 border-gray-800 rounded-md"

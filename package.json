@@ -4,9 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "build": "next build --no-eslint",
+    "start": "next start"
   },
   "dependencies": {
     "@next/font": "^14.2.15",

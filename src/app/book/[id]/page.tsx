@@ -6,6 +6,7 @@ import { FaEdit, FaTrash } from "react-icons/fa";
 import Link from "next/link";
 import { userAxiosInstance } from "@/app/api/axiosInstance";
 import { AxiosError } from 'axios';
+import Image from "next/image";
 
 interface Book {
     _id: string;
@@ -67,7 +68,7 @@ const BookDetails = () => {
         <div className="min-h-screen flex flex-col items-center py-12 px-4 sm:px-6 lg:px-8 mt-20">
             <div className="w-100 h-full p-2 flex flex-col md:flex-row justify-center space-y-1 md:space-y-0 md:space-x-5 border-2">
                 <div className="w-80 h-96 flex justify-center items-center">
-                    <img
+                    <Image
                         src={
                             book.image
                                 ? `/books/${book.image}`
