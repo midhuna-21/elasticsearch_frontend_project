@@ -6,6 +6,7 @@ import { axiosUser } from "../api/axios";
 import { toast } from "react-hot-toast";
 import { validate } from "@/utils/validations/signup";
 import { HiEye, HiEyeOff } from "react-icons/hi";
+import { AxiosError } from 'axios';
 
 export default function SignupPage() {
     const router = useRouter();
@@ -50,11 +51,15 @@ export default function SignupPage() {
                 toast.success("signup is successfull");
             }
             router.push("/login");
-        } catch (error: any) {
-            if (error.response && error.response.status === 400) {
-                toast.error(error.response.data.message);
+        } catch (error) {
+            if (error instanceof AxiosError) {
+                if (error.response && error.response.status === 400) {
+                    toast.error(error.response.data.message);
+                } else {
+                    toast.error("An error occurred. Try again later.");
+                }
             } else {
-                toast.error("An error occured try again later");
+                toast.error("An unexpected error occurred.");
             }
         }
     };

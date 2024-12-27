@@ -8,6 +8,7 @@ import { useDispatch } from "react-redux";
 import { addUser } from "@/reduxStore/slice/userSlice";
 import { validateLogin } from "@/utils/validations/login";
 import { axiosUser } from "../api/axios";
+import { AxiosError } from 'axios';
 
 export default function LoginPage() {
     const dispatch = useDispatch()
@@ -43,11 +44,15 @@ export default function LoginPage() {
                  toast.success("signup is successfull");
                  router.replace("/"); 
             }
-        }catch(error:any){
-            if (error.response && error.response.status === 401) {
-                toast.error(error.response.data.message);
+        }catch(error){
+            if (error instanceof AxiosError) {
+                if (error.response && error.response.status === 400) {
+                    toast.error(error.response.data.message);
+                } else {
+                    toast.error("An error occurred. Try again later.");
+                }
             } else {
-                toast.error("An error occured try again later");
+                toast.error("An unexpected error occurred.");
             }
         }
     };

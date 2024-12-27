@@ -8,6 +8,7 @@ import {
     userAxiosInstance,
     userAxiosInstanceWithFile,
 } from "@/app/api/axiosInstance";
+import { AxiosError } from 'axios';
 
 interface Book {
     _id: string;
@@ -74,9 +75,16 @@ const EditBook = () => {
             );
 
             router.push("/books");
-        } catch (error: any) {
-            console.error("Signup failed", error.message);
-            toast.error(error.message);
+        } catch (error) {
+            if (error instanceof AxiosError) {
+                if (error.response && error.response.status === 400) {
+                    toast.error(error.response.data.message);
+                } else {
+                    toast.error("An error occurred. Try again later.");
+                }
+            } else {
+                toast.error("An unexpected error occurred.");
+            }
         }
     };
 
@@ -103,8 +111,16 @@ const EditBook = () => {
             setDescription(resBook.description);
             setBookid(resBook.bookId);
             setImageUrl(resBook.image);
-        } catch (error: any) {
-            toast.error("Error occurred while fetching book details");
+        } catch (error) {
+            if (error instanceof AxiosError) {
+                if (error.response && error.response.status === 400) {
+                    toast.error(error.response.data.message);
+                } else {
+                    toast.error("An error occurred. Try again later.");
+                }
+            } else {
+                toast.error("An unexpected error occurred.");
+            }
         }
     };
 

@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { FaCamera } from "react-icons/fa";
 import { validateBook } from "@/utils/validations/book";
 import { userAxiosInstanceWithFile } from "../api/axiosInstance";
+import { AxiosError } from 'axios';
 
 const CreateBookForm = () => {
     const [title, setTitle] = useState("");
@@ -83,9 +84,16 @@ const CreateBookForm = () => {
             );
 
             router.push("/books");
-        } catch (error: any) {
-            console.error("Signup failed", error.message);
-            toast.error(error.message);
+        } catch (error) {
+            if (error instanceof AxiosError) {
+                if (error.response && error.response.status === 400) {
+                    toast.error(error.response.data.message);
+                } else {
+                    toast.error("An error occurred. Try again later.");
+                }
+            } else {
+                toast.error("An unexpected error occurred.");
+            }
         }
     };
 

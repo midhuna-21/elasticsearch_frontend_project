@@ -3,6 +3,7 @@ import Link from "next/link";
 import React, { useState, useEffect } from "react";
 import toast from "react-hot-toast";
 import { userAxiosInstance } from "./api/axiosInstance";
+import { AxiosError } from 'axios';
 
 interface AllBooks {
     _id: string;
@@ -24,9 +25,16 @@ export default function Home() {
             try {
                 const response = await userAxiosInstance.get("/books");
                 setBooks(response.data.books);
-            } catch (error: any) {
-                console.error("error occurred");
-                toast.error(error.message);
+            } catch (error) {
+                if (error instanceof AxiosError) {
+                    if (error.response && error.response.status === 400) {
+                        toast.error(error.response.data.message);
+                    } else {
+                        toast.error("An error occurred. Try again later.");
+                    }
+                } else {
+                    toast.error("An unexpected error occurred.");
+                }
             }
         };
         fetchBooks();

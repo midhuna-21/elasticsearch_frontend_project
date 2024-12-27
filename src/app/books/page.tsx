@@ -4,6 +4,7 @@ import toast from "react-hot-toast";
 import debounce from "lodash.debounce";
 import Link from "next/link";
 import { userAxiosInstance } from "../api/axiosInstance";
+import { AxiosError } from 'axios';
 
 interface AllBooks {
     _id: string;
@@ -48,9 +49,16 @@ const Books = () => {
             setBooks(response.data.books);
             setTotalPages(response.data.totalPages);
             setLoading(false);
-        } catch (error: any) {
-            console.error("error occurred");
-            toast.error(error.message);
+        } catch (error) {
+          if (error instanceof AxiosError) {
+            if (error.response && error.response.status === 400) {
+                toast.error(error.response.data.message);
+            } else {
+                toast.error("An error occurred. Try again later.");
+            }
+        } else {
+            toast.error("An unexpected error occurred.");
+        }
         }
     };
     const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {

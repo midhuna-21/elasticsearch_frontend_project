@@ -5,6 +5,7 @@ import { useParams, useRouter } from "next/navigation";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import Link from "next/link";
 import { userAxiosInstance } from "@/app/api/axiosInstance";
+import { AxiosError } from 'axios';
 
 interface Book {
     _id: string;
@@ -32,8 +33,16 @@ const BookDetails = () => {
             );
             setBookId(response.data.book._source.bookId);
             setBook(response.data.book._source);
-        } catch (error: any) {
-            toast.error("Failed to fetch book details.");
+        } catch (error) {
+            if (error instanceof AxiosError) {
+                if (error.response && error.response.status === 400) {
+                    toast.error(error.response.data.message);
+                } else {
+                    toast.error("An error occurred. Try again later.");
+                }
+            } else {
+                toast.error("An unexpected error occurred.");
+            }
         }
     };
 
