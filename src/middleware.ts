@@ -1,4 +1,3 @@
-
 import { NextRequest, NextResponse } from "next/server";
 
 export function middleware(request: NextRequest) {
@@ -18,5 +17,14 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-    matcher: ["/", "/profile", "/signup", "/login"],
+    matcher: [
+        "/",
+        "/profile",
+        "/signup",
+        "/login",
+        "/books",
+        "/createBook",
+        "/boookEdit",
+        "/book",
+    ],
 };

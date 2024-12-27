@@ -4,12 +4,12 @@ import Cookies from "js-cookie";
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
-import { axiosUser } from "../api/axios";
 import { HiEye, HiEyeOff } from "react-icons/hi";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { addUser } from "@/reduxStore/slice/userSlice";
 import { validateLogin } from "@/utils/validations/login";
+import { axiosUser } from "../api/axios";
 
 export default function LoginPage() {
     const dispatch = useDispatch()
@@ -32,17 +32,23 @@ export default function LoginPage() {
                 toast.error(validationResult);
                 return;
             }
-            const response = await axios.post('http://localhost:8000/api/user/login',{email,password},{
-                 withCredentials: true  ,
-                 headers: {
-                    "Content-Type": "application/json",
-                },
-            })
+            // const response = await axios.post('http://localhost:8000/api/user/login',{email,password},{
+            //      withCredentials: true  ,
+            //      headers: {
+            //         "Content-Type": "application/json",
+            //     },
+            // })
+            const response = await axiosUser.post('/login',{email,password},{
+                withCredentials: true  ,
+                headers: {
+                   "Content-Type": "application/json",
+               },
+           })
+          
             if(response.status==200){
-                console.log(response.data.user,'repsonse')
                 dispatch(addUser(response.data))
-               
-                router.push('/')    
+                 toast.success("signup is successfull");
+                 router.replace("/"); 
             }
         }catch(error:any){
             if (error.response && error.response.status === 401) {

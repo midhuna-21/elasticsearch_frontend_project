@@ -1,8 +1,7 @@
 import axios, { AxiosInstance } from "axios";
-import config from "./config";
+import config from "../../../next.config";
 
-const BASE_URL = config.API_URL || "http://localhost:8000/api";
-console.log(BASE_URL,'api url')
+const BASE_URL = config.API_URL!;
 
 const createAxiosInstance = (baseURL: string): AxiosInstance => {
     return axios.create({
@@ -15,6 +14,3 @@ const createAxiosInstance = (baseURL: string): AxiosInstance => {
 export const axiosPrivate = createAxiosInstance(BASE_URL);
 
 export const axiosUser = createAxiosInstance(`${BASE_URL}/user`);
-
-
-

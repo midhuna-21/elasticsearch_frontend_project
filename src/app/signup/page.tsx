@@ -15,7 +15,8 @@ export default function SignupPage() {
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     const [isPasswordVisible, setIsPasswordVisible] = useState(false);
-    const [isConfirmPasswordVisible, setIsConfirmPasswordVisible] = useState(false);
+    const [isConfirmPasswordVisible, setIsConfirmPasswordVisible] =
+        useState(false);
 
     const togglePasswordVisibility = () => {
         setIsPasswordVisible(!isPasswordVisible);
@@ -36,12 +37,16 @@ export default function SignupPage() {
             confirmPassword
         );
         if (validationResult !== true) {
-            console.log("eoror", validationResult);
             toast.error(validationResult);
             return;
         }
         try {
-            const response = await axios.post("http://localhost:8000/api/user/signup", {
+            // const response = await axios.post("http://localhost:8000/api/user/signup", {
+            //     name,
+            //     email,
+            //     password,
+            // });
+            const response = await axiosUser.post("/signup", {
                 name,
                 email,
                 password,
@@ -86,29 +91,33 @@ export default function SignupPage() {
                         />
                     </div>
                     <div className="relative">
-                    <div className="mb-6">
-                        <input
-                            className="w-full p-3 mt-2 border border-gray-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-700"
-                            id="password"
-                            type={isPasswordVisible ? "text" : "password"}
-                            placeholder="Enter password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                        />
-                          <button
-                            type="button"
-                            className="absolute inset-y-0 right-0 flex items-center px-3 text-gray-700"
-                            onClick={togglePasswordVisibility}>
-                            {isPasswordVisible ? <HiEyeOff /> : <HiEye />}
-                        </button>
-                    </div>
+                        <div className="mb-6">
+                            <input
+                                className="w-full p-3 mt-2 border border-gray-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-700"
+                                id="password"
+                                type={isPasswordVisible ? "text" : "password"}
+                                placeholder="Enter password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                            />
+                            <button
+                                type="button"
+                                className="absolute inset-y-0 right-0 flex items-center px-3 text-gray-700"
+                                onClick={togglePasswordVisibility}>
+                                {isPasswordVisible ? <HiEyeOff /> : <HiEye />}
+                            </button>
+                        </div>
                     </div>
                     <div className="relative">
                         <div className="mb-6">
                             <input
                                 className="w-full p-3 mt-2 border border-gray-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-700"
                                 id="confirmpassword"
-                                type={isConfirmPasswordVisible ? "text" : "password"}
+                                type={
+                                    isConfirmPasswordVisible
+                                        ? "text"
+                                        : "password"
+                                }
                                 placeholder="Enter confirmpassword"
                                 value={confirmPassword}
                                 onChange={(e) =>
@@ -120,7 +129,11 @@ export default function SignupPage() {
                             type="button"
                             className="absolute inset-y-0 right-0 flex items-center px-3 text-gray-700"
                             onClick={toggleConfirmPasswordVisibility}>
-                            {isConfirmPasswordVisible ? <HiEyeOff /> : <HiEye />}
+                            {isConfirmPasswordVisible ? (
+                                <HiEyeOff />
+                            ) : (
+                                <HiEye />
+                            )}
                         </button>
                     </div>
                     <button
