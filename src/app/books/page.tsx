@@ -107,7 +107,7 @@ const Books = () => {
                         </div>
                     ) : (
                         books.map((book, index) => (
-                            <Link href={`/book/${book._id}`}>
+                          <Link href={`/book/${book._id}`} key={book._id || index}>
                                 <div
                                     key={index}
                                     className="bg-white rounded-lg shadow-lg overflow-hidden p-4 flex flex-col justify-between h-80 w-60">

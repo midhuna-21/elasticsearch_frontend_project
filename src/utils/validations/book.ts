@@ -14,7 +14,6 @@ const validateBook = (
     const currentYear = new Date().getFullYear();
     const startingYear = 1440;
     const validNameRegex = /^[A-Za-z]+(?: [A-Za-z]+)*$/;
-    const isbnRegex = /^(97(8|9))?\d{9}(\d|X)$/;
 
     if (!title.trim()) {
         errors.push("Please enter Book title");

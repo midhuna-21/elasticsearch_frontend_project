@@ -8,6 +8,7 @@ import { Store } from "../../reduxStore/store";
 import { clearUser } from "../../reduxStore/slice/userSlice";
 import { userRefreshTokenApi } from "./api";
 import config from "../../../next.config";
+import { Dispatch } from "@reduxjs/toolkit";
 
 const USER_API_URL = config.USER_API_URL || "";
 
@@ -15,7 +16,7 @@ const createAxiosInstance = (
     baseURL: string,
     accessTokenKey: string,
     refreshTokenKey: string,
-    logoutAction: () => any,
+    logoutAction: () => ReturnType<Dispatch>, 
     contentType: string
 ): AxiosInstance => {
     const instance = axios.create({

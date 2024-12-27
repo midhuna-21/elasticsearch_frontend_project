@@ -77,7 +77,7 @@ export default function Home() {
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 w-full max-w-7xl">
                 {books.map((book, index) => (
-                            <Link href={`/book/${book._id}`}>
+                            <Link href={`/book/${book._id}`} key={book._id || index}>
                                 <div
                                     key={index}
                                     className="bg-white rounded-lg shadow-lg overflow-hidden p-4 flex flex-col justify-between h-80 w-60">
