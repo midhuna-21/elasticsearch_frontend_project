@@ -1,1 +1,1 @@
-export const userRefreshTokenApi = `https://bookc.store/api/user/refresh-token`;
+export const userRefreshTokenApi = `https://bookc.store/refresh-token`;

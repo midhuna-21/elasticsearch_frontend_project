@@ -46,7 +46,8 @@ export default function SignupPage() {
                 name,
                 email,
                 password,
-            });
+            },
+        );
             if (response.status == 200) {
                 toast.success("signup is successfull");
             }

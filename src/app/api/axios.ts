@@ -1,6 +1,6 @@
 import axios, { AxiosInstance } from "axios";
 
-const BASE_URL = process.env.NEXT_PUBLIC_API_URL || "https://bookc.store/api";
+const BASE_URL = process.env.NEXT_PUBLIC_API_BACKEND || "https://bookc.store";
 
 console.log(BASE_URL,'BASE_URL')
 const createAxiosInstance = (baseURL: string): AxiosInstance => {
