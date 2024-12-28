@@ -40,7 +40,9 @@ const Books = () => {
             const searchQuery = search.trim();
            
             const response = await userAxiosInstance.get("/books", {
-                params: { page, search: searchQuery },
+                params: { page, search: searchQuery },  
+                headers: { "Content-Type": "application/json" },
+                withCredentials: true,
             });
             setBooks(response.data.books);
             setTotalPages(response.data.totalPages);

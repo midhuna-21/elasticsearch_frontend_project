@@ -46,7 +46,10 @@ export default function SignupPage() {
                 name,
                 email,
                 password,
-            },
+            },{
+                headers: { "Content-Type": "application/json" },
+                withCredentials: true,
+            }
         );
             if (response.status == 200) {
                 toast.success("signup is successfull");

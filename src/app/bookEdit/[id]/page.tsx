@@ -87,7 +87,10 @@ const EditBook = () => {
     const fetchBook = async (bookId: string) => {
         try {
             const response = await userAxiosInstanceWithFile.get(
-                `/book/${bookId}`
+                `/book/${bookId}`,{
+                    headers: { "Content-Type": "application/json" },
+                    withCredentials: true,
+                }
             );
             const resBook = response.data.book._source;
 

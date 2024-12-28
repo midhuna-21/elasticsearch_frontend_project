@@ -29,7 +29,10 @@ const BookDetails = () => {
     useEffect(() => {
     const fetchBook = async () => {
         try {
-            const response = await userAxiosInstance.get(`/book/${id}`
+            const response = await userAxiosInstance.get(`/book/${id}`,{
+                headers: { "Content-Type": "application/json" },
+                withCredentials: true,
+            }
             );
             setBookId(response.data.book._source.bookId);
             setBook(response.data.book._source);
@@ -52,7 +55,10 @@ const BookDetails = () => {
         setIsExpanded(!isExpanded);
     };
     const handleDelete = async () => {
-         await userAxiosInstance.post(`/book/delete/${id}/${bookId}`
+         await userAxiosInstance.post(`/book/delete/${id}/${bookId}`,{
+            headers: { "Content-Type": "application/json" },
+            withCredentials: true,
+         }
         );
         router.push("/books");
     };
