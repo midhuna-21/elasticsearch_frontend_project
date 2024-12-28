@@ -11,6 +11,4 @@ const createAxiosInstance = (baseURL: string): AxiosInstance => {
     });
 };
 
-export const axiosPrivate = createAxiosInstance(BASE_URL);
-
-export const axiosUser = createAxiosInstance(`${BASE_URL}/user`);
+export const axiosUser = createAxiosInstance(`${BASE_URL}`);
