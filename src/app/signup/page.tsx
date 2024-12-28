@@ -2,11 +2,10 @@
 import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { axiosUser } from "../api/axios";
 import { toast } from "react-hot-toast";
 import { validate } from "@/utils/validations/signup";
 import { HiEye, HiEyeOff } from "react-icons/hi";
-import { AxiosError } from 'axios';
+import axios, { AxiosError } from 'axios';
 
 export default function SignupPage() {
     const router = useRouter();
@@ -42,7 +41,7 @@ export default function SignupPage() {
         }
         try {
          
-            const response = await axiosUser.post("/signup", {
+            const response = await axios.post("/https://bookc.store/api/user/signup", {
                 name,
                 email,
                 password,
