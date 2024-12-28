@@ -24,10 +24,9 @@ const BookDetails = () => {
     const [book, setBook] = useState<Book | null>(null);
     const [isExpanded, setIsExpanded] = useState(false);
     const [bookId, setBookId] = useState("");
-    useEffect(() => {
-        if (id) fetchBook();
-    }, [id]);
+ 
 
+    useEffect(() => {
     const fetchBook = async () => {
         try {
             const response = await userAxiosInstance.get(`/book/${id}`
@@ -46,6 +45,8 @@ const BookDetails = () => {
             }
         }
     };
+    if (id) fetchBook();
+}, [id]);
 
     const toggleReadMore = () => {
         setIsExpanded(!isExpanded);

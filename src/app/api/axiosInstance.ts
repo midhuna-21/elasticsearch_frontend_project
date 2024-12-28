@@ -7,10 +7,9 @@ import axios, {
 import { Store } from "../../reduxStore/store";
 import { clearUser } from "../../reduxStore/slice/userSlice";
 import { userRefreshTokenApi } from "./api";
-import config from "../../../next.config";
 import { Dispatch } from "@reduxjs/toolkit";
 
-const USER_API_URL = config.USER_API_URL || "";
+const USER_API_URL = process.env.NEXT_PUBLIC_USER_API_URL || "";
 
 const createAxiosInstance = (
     baseURL: string,

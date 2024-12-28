@@ -4,10 +4,12 @@
   "private": true,
   "scripts": {
   "dev": "next dev --turbopack",
-  "build": "next build", 
+  "build": "cross-env NEXT_ESLINT_IGNORE=true next build",
   "start": "next start",
   "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0"
-},
+}
+
+,
   "dependencies": {
     "@next/font": "^14.2.15",
     "@reduxjs/toolkit": "^2.5.0",

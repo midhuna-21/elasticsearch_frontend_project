@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import debounce from "lodash.debounce";
 import Link from "next/link";
@@ -26,9 +26,7 @@ const Books = () => {
     const [totalPages, setTotalPages] = useState<number>(0);
     const [loading, setLoading] = useState(false);
 
-    useEffect(() => {
-        fetchBooks(searchTerm, page);
-    }, [page]);
+   
 
     useEffect(() => {
         const debouncedSearch = debounce(() => fetchBooks(searchTerm, 1), 300);
@@ -36,7 +34,7 @@ const Books = () => {
         return () => debouncedSearch.cancel();
     }, [searchTerm]);
 
-    const fetchBooks = async (search: string = "", page: number = 1) => {
+    const fetchBooks = useCallback(async (search: string = "", page: number = 1) => {
         try {
             setLoading(true);
             const searchQuery = search.trim();
@@ -58,7 +56,12 @@ const Books = () => {
             toast.error("An unexpected error occurred.");
         }
         }
-    };
+    },[]
+)
+
+useEffect(() => {
+    fetchBooks(searchTerm, page);
+}, [fetchBooks, page,searchTerm]);
     const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
         setSearchTerm(e.target.value);
         setPage(1);

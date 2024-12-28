@@ -1,7 +1,6 @@
 import axios, { AxiosInstance } from "axios";
-import config from "../../../next.config";
 
-const BASE_URL = config.API_URL!;
+const BASE_URL = process.env.NEXT_PUBLIC_API_URL!;
 
 const createAxiosInstance = (baseURL: string): AxiosInstance => {
     return axios.create({

@@ -1,3 +1,1 @@
-import config from "../../../next.config";
-
-export const userRefreshTokenApi = `${config.USER_API_URL}/refresh-token`;
+export const userRefreshTokenApi = `${process.env.NEXT_PUBLIC_USER_API_URL}/refresh-token`;
