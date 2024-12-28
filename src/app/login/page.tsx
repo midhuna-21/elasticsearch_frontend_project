@@ -7,7 +7,8 @@ import { HiEye, HiEyeOff } from "react-icons/hi";
 import { useDispatch } from "react-redux";
 import { addUser } from "@/reduxStore/slice/userSlice";
 import { validateLogin } from "@/utils/validations/login";
-import axios, { AxiosError } from 'axios';
+import { axiosUser } from "../api/axios";
+import { AxiosError } from 'axios';
 
 export default function LoginPage() {
     const dispatch = useDispatch()
@@ -31,7 +32,7 @@ export default function LoginPage() {
                 return;
             }
      
-            const response = await axios.post('https://bookc.store/api/user/login',{email,password},{
+            const response = await axiosUser.post('/login',{email,password},{
                 withCredentials: true  ,
                 headers: {
                    "Content-Type": "application/json",
