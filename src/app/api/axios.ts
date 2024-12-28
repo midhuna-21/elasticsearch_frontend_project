@@ -1,6 +1,6 @@
 import axios, { AxiosInstance } from "axios";
 
-const BASE_URL = process.env.NEXT_PUBLIC_API_URL || "https://elasticsearch-frontend-project-nkxb.vercel.app/api";
+const BASE_URL = process.env.NEXT_PUBLIC_API_URL || "https://bookc.store/api";
 
 console.log(BASE_URL,'BASE_URL')
 const createAxiosInstance = (baseURL: string): AxiosInstance => {

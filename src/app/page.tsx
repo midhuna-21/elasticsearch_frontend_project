@@ -83,6 +83,8 @@ export default function Home() {
                                     key={index}
                                     className="bg-white rounded-lg shadow-lg overflow-hidden p-4 flex flex-col justify-between h-80 w-60">
                                     <Image
+                                     width={500} 
+                                     height={500} 
                                         src={`/books/${book._source.image}`}
                                         alt={book._source.title}
                                         className="object-cover w-full h-64 border-2 border-gray-800 rounded-md"
