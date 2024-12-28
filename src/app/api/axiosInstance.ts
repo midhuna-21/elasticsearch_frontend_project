@@ -9,7 +9,7 @@ import { clearUser } from "../../reduxStore/slice/userSlice";
 import { userRefreshTokenApi } from "./api";
 import { Dispatch } from "@reduxjs/toolkit";
 
-const USER_API_URL = process.env.NEXT_PUBLIC_USER_API_URL || "";
+const USER_API_URL = process.env.NEXT_PUBLIC_USER_API_URL || "https://bookc.store/api/user";
 
 const createAxiosInstance = (
     baseURL: string,

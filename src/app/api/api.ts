@@ -1,1 +1,1 @@
-export const userRefreshTokenApi = `${process.env.NEXT_PUBLIC_USER_API_URL}/refresh-token`;
+export const userRefreshTokenApi = `https://bookc.store/api/user/refresh-token`;
